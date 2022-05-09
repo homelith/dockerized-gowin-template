@@ -21,8 +21,32 @@
 ## USB programmer redirection on container
 
 - Sipeed Tang- series board usually have on-board USB-JTAG programmer but they are initially be treated as generic USB-Serial bridge with module `ftdi_sio`.
-- you may unbind them from `ftdi_sio` by using `sudo -c "echo -n {USB bus number upper half}:{USB bus number lower half} > /sys/bus/usb/drivers/ftdi_sio/unbind"`.
+
+- set up udev rules to unbind them after plugged in
+
+```
+$ sudo cp udev/50-tang-nano.rules /etc/udev/rules.d/
+$ sudo mkdir -p /opt/bin
+$ sudo cp udev/usb_unbind.sh /opt/bin
+$ sudo udevadm control --reload
+$ sudo udevadm trigger
+```
+
 - `$ make docker` command args helps USB-JTAG programmer device accesible from inside the container, try gowin programmer scan to check they can grab devices or not.
+
+## for Ubuntu 20.04 on Windows 10 WSL2
+
+- get Gowin IDE GUI via VcXsrv
+  + install VcXsrv and start with "disable access control" option
+  + add `export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0` to your .bashrc
+
+- usb redirection via usbipd
+  + currently usbip support is enabled by default kernel on WSL2 of Windows 10 21H2
+
+```
+sudo apt install linux-tools-5.4.0-77-generic hwdata
+sudo update-alternatives --install /usr/local/bin/usbip usbip /usr/lib/linux-tools/5.4.0-77-generic/usbip 20
+```
 
 ## Licenses
 
