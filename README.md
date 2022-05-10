@@ -32,7 +32,7 @@ $ sudo udevadm control --reload
 $ sudo udevadm trigger
 ```
 
-- `$ make docker` command args helps USB-JTAG programmer device accesible from inside the container, try gowin programmer scan to check they can grab devices or not.
+- `$ make docker` command args helps USB-JTAG programmer device accessible from inside the container, try gowin programmer scan to check they can grab devices or not.
 
 ## for Ubuntu 20.04 on Windows 10 WSL2
 

@@ -38,6 +38,7 @@ RUN chmod +x /root/install.sh
 # add non-privilege user
 RUN useradd -ms /bin/bash ${INTERNAL_USER}
 RUN echo "${INTERNAL_USER} ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+RUN sudo sed -i /etc/sudoers -e "s/^Defaults\tsecure_path=.*$/#&\nDefaults\tenv_keep +=\"PATH\"/"
 USER ${INTERNAL_USER}
 WORKDIR /home/${INTERNAL_USER}
 
