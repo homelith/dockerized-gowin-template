@@ -22,7 +22,7 @@ INSTALL_ROOT   := /opt
 IMAGE_NAME     := gowin-tools
 #IMAGE_NAME     := homelith.sakuracr.jp/gowin-tools
 
-IMAGE_TAG      := 1.9.8.05
+IMAGE_TAG      := 1.9.8.07
 INTERNAL_USER  := guser
 BUILD_REQUIRED := \
 	$(shell if ! (type docker > /dev/null 2>&1); then echo 0; \
