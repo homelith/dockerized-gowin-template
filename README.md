@@ -51,10 +51,10 @@ sudo update-alternatives --install /usr/local/bin/usbip usbip /usr/lib/linux-too
 
 ## compilation helpers
 
-- `{TOOL_VERSION}/Makefile` include useful helper commands to be used in docker environment.
+- `{TOOL_VERSION}/{TARGET_BOARD}/Makefile` include useful helper commands to be used in docker environment.
 - `$ make ide` : boot Gowin IDE with ${HOME} set to current directory
-- `$ make program` : one time SRAM programming with openFPGALoader
-- `$ make flash` : programming to non-volatile memory with openFPGALoader
+- `$ make program` : issue one time SRAM programming with openFPGALoader
+- `$ make flash` : program to non-volatile memory with openFPGALoader
 - `$ make clean` : cleanup generated files
 
 ## Licenses
