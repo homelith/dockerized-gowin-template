@@ -1,15 +1,15 @@
 .PHONY: clean
 
-BITSTREAM=impl/pnr/tang_nano.fs
+BITSTREAM=impl/pnr/Tang_nano_9K_LCD.fs
 
 ide:
 	HOME=$(shell pwd) gw_ide
 
 program:
-	openFPGALoader -b tangnano -m $(BITSTREAM)
+	openFPGALoader -b tangnano9k $(BITSTREAM)
 
 flash:
-	openFPGALoader -b tangnano -f $(BITSTREAM)
+	openFPGALoader -b tangnano9k -f $(BITSTREAM)
 
 clean:
 	rm -rf .cache .config .fontconfig .dbus

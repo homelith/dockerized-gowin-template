@@ -1,11 +1,11 @@
 #!/bin/bash
 
 INTERNAL_USER=guser
-GOWIN_TOOL_VERSION=1.9.8
+GOWIN_TOOL_VERSION=1.9.8.07
 GOWIN_ROOT_DIR=/opt/Gowin
 INSTALLER_DIR=/opt/install_files
-INSTALLER_DOWNLOAD_URI=http://cdn.gowinsemi.com.cn/Gowin_V1.9.8_linux.tar.gz
-INSTALLER_ARCHIVE=Gowin_V1.9.8_linux.tar.gz
+INSTALLER_DOWNLOAD_URI=http://cdn.gowinsemi.com.cn/Gowin_V1.9.8.07_linux.tar.gz
+INSTALLER_ARCHIVE=Gowin_V1.9.8.07_linux.tar.gz
 
 # check if installer file and download it
 if [ ! -f ${INSTALLER_DIR}/${INSTALLER_ARCHIVE} ]; then

@@ -1,5 +1,5 @@
 #!/bin/bash
-GOWIN_TOOL_VERSION=1.9.8
+GOWIN_TOOL_VERSION=1.9.8.03_edu
 GOWIN_ROOT_DIR=/opt/Gowin
 
 export QT_X11_NO_MITSHM=1

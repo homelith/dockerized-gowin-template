@@ -1,21 +1,14 @@
 # dockerized-gowin-template
 
-- template gowin project (aims) supporting multiple tool version and devboard
+- template gowin project aims supporting multiple tool version and devboard
 - docker recipes for installing and running gowin tools included, helps them run on various un-supported linux distros
 
 ## usage
 
 - get docker command introduced and accessible from non-privilege user.
-
 - select Gowin tool version on your purpose and `cd {TOOL_VERSION}`.
-  + 1.9.8 : suitable for floating license server provided by sipeed, evaluating their Tang- series devboards.
-  + 1.9.8.03\_Education : latest Education edition, requires no license but supports limited devices
-  + 1.9.8.05 : latest version at May 6 2022.
-
 - `$ make docker` to build `gowin-tools:{TOOL_VERSION}` image and and get console on the container with project directory and /opt directory are mounted transparently.
-
 - execute `$ /root/install.sh` to download and install gowin tools on /opt/Gowin/{TOOL\_VERSION}.
-
 - now you can use `gw_ide` command to launch gowin ide and develop codes on your will. drill into some template projects for your board and test compiling.
 
 ## USB programmer redirection on container
@@ -23,11 +16,10 @@
 - Sipeed Tang- series board usually have on-board USB-JTAG programmer but they are initially be treated as generic USB-Serial bridge with module `ftdi_sio`.
 
 - set up udev rules to unbind them after plugged in
-
 ```
-$ sudo cp udev/50-tang-nano.rules /etc/udev/rules.d/
+$ sudo cp tools/udev/50-tang-nano.rules /etc/udev/rules.d/
 $ sudo mkdir -p /opt/bin
-$ sudo cp udev/usb_unbind.sh /opt/bin
+$ sudo cp tools/udev/usb_unbind.sh /opt/bin
 $ sudo udevadm control --reload
 $ sudo udevadm trigger
 ```
@@ -47,6 +39,23 @@ $ sudo udevadm trigger
 sudo apt install linux-tools-5.4.0-77-generic hwdata
 sudo update-alternatives --install /usr/local/bin/usbip usbip /usr/lib/linux-tools/5.4.0-77-generic/usbip 20
 ```
+
+## manage gowin product license
+
+- for Education edition, you need no additinal license required. Be sure Edu version supports limited evaluation devices (e.g. sipeed tang-nano series).
+
+- for Standard edition, you have to register gowin and request your own license file with your development machine's NIC MAC address.
+  + you may get `gowin_{MAC address}.lic` `gowin_E_{MAC address}.lic` and `E-` version is suitable for 1.9.8.01 and later. license files could be stored /opt/Gowin/license to be accessible inside the docker environment.
+  + first time you launched Gowin IDE, they requires license setup and you should specify license file path.
+  + for WSL2 environment, it is difficult to determine fixed NIC MAC address. You can use `$ tools/add_dummy_if.sh {MAC address seperated by ':'}` to setup dummy I/F with specified MAC address.
+
+## compilation helpers
+
+- `{TOOL_VERSION}/Makefile` include useful helper commands to be used in docker environment.
+- `$ make ide` : boot Gowin IDE with ${HOME} set to current directory
+- `$ make program` : one time SRAM programming with openFPGALoader
+- `$ make flash` : programming to non-volatile memory with openFPGALoader
+- `$ make clean` : cleanup generated files
 
 ## Licenses
 

@@ -7,49 +7,29 @@ ENV FILE_DIR=docker
 
 # useful pkg for development
 RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y \
-      build-essential git iproute2 locales make rsync screen strace sudo tmux tzdata usbutils vim wget x11-apps xorg xterm && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential git locales make rsync screen sudo tmux tzdata usbutils vim wget x11-apps xorg xterm && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 # required pkg for running gowin ide
 RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y \
-      libglib2.0-0 libfontconfig1 kmod && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y libglib2.0-0 libfontconfig1 kmod && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 # required pkg for simulation
 RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y \
-      iverilog gtkwave && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y iverilog gtkwave && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# xvfb + xorgxrdp + xrdp desktop environment
+# desktop environment
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y \
       fonts-ipafont-gothic fonts-ipafont-mincho ibus ibus-mozc language-pack-ja language-pack-ja-base xfce4 xrdp && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 EXPOSE 3389
-
-# requirement for openFPGALoader
-RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y \
-      cmake libftdi1-2 libftdi1-dev libhidapi-hidraw0 libhidapi-dev libudev-dev pkg-config zlib1g-dev && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
-
-# install openFPGALoader
-RUN git clone https://github.com/trabucayre/openFPGALoader.git && \
-    mkdir -p openFPGALoader/build && \
-    cd openFPGALoader/build && \
-    cmake .. && \
-    cmake --build . && \
-    sudo make install && \
-    cd ../../ && \
-    rm -rf openFPGALoader
 
 #### Global Settings ####
 # set locale
