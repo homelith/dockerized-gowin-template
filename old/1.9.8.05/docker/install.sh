@@ -1,6 +1,6 @@
 #!/bin/bash
 
-INTERNAL_USER=guser
+INTERNAL_USER=user
 GOWIN_TOOL_VERSION=1.9.8.05
 GOWIN_ROOT_DIR=/opt/Gowin
 INSTALLER_DIR=/opt/install_files

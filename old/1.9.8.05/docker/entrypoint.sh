@@ -1,6 +1,6 @@
 #!/bin/bash
 
-INTERNAL_USER=guser
+INTERNAL_USER=user
 if [ -n ${USER_ID+x} -a -n ${GROUP_ID+x} ]; then
     echo usermod -u $USER_ID -d /home/${INTERNAL_USER} -o -m ${INTERNAL_USER}
     echo groupmod -g $GROUP_ID ${INTERNAL_USER}
