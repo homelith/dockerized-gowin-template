@@ -23,7 +23,7 @@ IMAGE_NAME     := gowin-tools
 #IMAGE_NAME     := homelith.sakuracr.jp/gowin-tools
 
 IMAGE_TAG      := 1.9.8.05
-INTERNAL_USER  := guser
+INTERNAL_USER  := user
 BUILD_REQUIRED := \
 	$(shell if ! (type docker > /dev/null 2>&1); then echo 0; \
 	elif ! (docker inspect $(IMAGE_NAME):$(IMAGE_TAG) > /dev/null 2>&1); then echo 1; \
